@@ -7,22 +7,28 @@ Este archivo contiene las preguntas que se van a realizar en el laboratorio.
 No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de python
 básicas.
 
-Utilice el archivo `data.csv` para resolver las preguntas.
+#Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-
-
 def pregunta_01():
+    
+    with open( 'data.csv' , "r") as file:
+        data = file.readlines()
+        
+    data = [row.replace("\n", "") for row in data]
+    data = [row.replace("\t", ",") for row in data]
+    data = [row.split(",") for row in data]
+    data = [row[1] for row in data]
+    data = [int(row) for row in data]
+    respuesta = sum(data)
+
     """
     Retorne la suma de la segunda columna.
-
     Rta/
     214
-
     """
-    return 666
-
+    return respuesta
 
 def pregunta_02():
     """
