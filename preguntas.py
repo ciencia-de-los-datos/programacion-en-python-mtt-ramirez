@@ -123,9 +123,9 @@ def pregunta_04():
         else:
             counter[month[1]] = 1
     final_count = [(contmonth,counter[contmonth] ) for contmonth in counter]
-    final_count = final_count.sort(key = lambda x: x[0])
+    final_count.sort(key = lambda x: x[0])
     return final_count
-    
+
 def pregunta_05():
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
