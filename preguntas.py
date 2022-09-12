@@ -31,10 +31,10 @@ def pregunta_01():
 
     """
     data = upload_data()
-    sum = 0
+    sum1 = 0
     for lista in data:
-        sum = int(lista[1]) + sum
-    return suma
+        sum1 = int(lista[1]) + sum1
+    return sum1
 
 def pregunta_02():
     """
@@ -336,8 +336,8 @@ def pregunta_09():
                 dict1[variable] = 1
             else: 
                 diccionario[variable] += 1
-    diccionario = dict(sorted(diccionario.items()))
-    return diccionario
+    dict1 = dict(sorted(dict1.items()))
+    return dict1
 
 
 def pregunta_10():
@@ -422,6 +422,6 @@ def pregunta_12():
             if lista[0] not in dict1:
                 dict1[lista[0]] = variable
             else:
-                dict[lista[0]] += variable
+                dict1[lista[0]] += variable
     dict1 = dict(sorted(dict1.items()))
     return dict1
