@@ -8,30 +8,30 @@ No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de 
 básicas.
 
 Utilice el archivo `data.csv` para resolver las preguntas.
-
 """
-def pregunta_01():  
-    with open( 'data.csv' , "r") as file:
-     data = file.readlines()
+def pregunta_01():
+        with open( 'data.csv' , "r") as file:
+            data = file.readlines()
+            
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        data = [row[1] for row in data]
+        data = [int(row) for row in data]
+        answer = sum(data)
         
-    data = [row.replace("\n", "") for row in data]
-    data = [row.replace("\t", ",") for row in data]
-    data = [row.split(",") for row in data]
-    data = [row[1] for row in data]
-    data = [int(row) for row in data]
-    answer = sum(data)
-    return answer
-
-    """
+        return answer
+""""
     Retorne la suma de la segunda columna.
   
     """
 def pregunta_02():
 
+    import collections
     from collections import Counter
 
     with open( 'data.csv' , "r") as file:
-            data = file.readlines()
+                data = file.readlines()
             
     data = [row.replace("\n", "") for row in data]
     data = [row.replace("\t", ",") for row in data]
@@ -106,10 +106,9 @@ def pregunta_04():
         ("12", 3),
     ]
     """
-def pregunta_01():  
     with open( 'data.csv' , "r") as file:
-        data = file.readlines()
-    
+        data = file.readlines()    
+        
     months = [data[i][2][5:7] for i in range(len(data))]
     answer = []
 
@@ -136,10 +135,9 @@ def pregunta_05():
         ("E", 9, 1),
     ]
     """
-def pregunta_01():  
     with open( 'data.csv' , "r") as file:
-        data = file.readlines()
-     
+        data = file.readlines()    
+        
     col_0 = [data[i][0] for i in range(len(data))]
     col_1 = [int(data[i][1]) for i in range(len(data))]
     unique_characters = sorted(list(set(col_0)))
@@ -185,7 +183,7 @@ def pregunta_06():
     data = [row.replace("\n", "") for row in data]
     data = [row.replace("\t", ",") for row in data]
     data = [row.split(",") for row in data]
-
+        
     dict_min = {}
     dict_max = {}
 
@@ -193,20 +191,19 @@ def pregunta_06():
         for element in data:
             key = element[:3]
             value = int(element[4:])
-        if key in dict_min:
-            if value < dict_min[key]:
+            if key in dict_min:
+                if value < dict_min[key]:
+                    dict_min[key] = value
+            elif key not in dict_min:
                 dict_min[key] = value
-        elif key not in dict_min:
-            dict_min[key] = value
-        if key in dict_max:
-            if value > dict_max[key]:
-                dict_max[key] = value
-        elif key not in dict_max:
-            dict_max[key] = value           
+            if key in  dict_max:
+                if value >  dict_max[key]:
+                     dict_max[key] = value
+            elif key not in  dict_max:
+                 dict_max[key] = value           
 
     list_result =[]
     for result in zip(dict_min.keys(),list(dict_min.values()),list(dict_max.values())):
-        list_result.append(result)
-        list_result.sort(key = lambda x: x[0])
-    
+            list_result.append(result)
+            list_result.sort(key = lambda x: x[0])
     return list_result
