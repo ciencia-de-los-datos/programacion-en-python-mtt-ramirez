@@ -7,10 +7,12 @@ Este archivo contiene las preguntas que se van a realizar en el laboratorio.
 No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de python
 básicas.
 
-#Utilice el archivo `data.csv` para resolver las preguntas.
-
+Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
+from collections import Counter
+
+
 def pregunta_01():
     
     with open( 'data.csv' , "r") as file:
@@ -21,17 +23,31 @@ def pregunta_01():
     data = [row.split(",") for row in data]
     data = [row[1] for row in data]
     data = [int(row) for row in data]
-    respuesta = sum(data)
-
+    answer = sum(data)
     """
     Retorne la suma de la segunda columna.
     Rta/
     214
     """
-    return respuesta
-
+    print(answer)
 def pregunta_02():
-    """
+
+    import collections
+    from collections import Counter
+
+    with open( 'data.csv' , "r") as file:
+                data = file.readlines()
+            
+    data = [row.replace("\n", "") for row in data]
+    data = [row.replace("\t", ",") for row in data]
+    data = [row.split(",") for row in data]
+    data = [row[0] for row in data]
+    d1 = Counter(data)
+    respuesta = list(d1.items())
+    respuesta.sort(reverse=False)
+
+
+"""
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
     de tuplas (letra, cantidad), ordendas alfabéticamente.
 
@@ -45,10 +61,24 @@ def pregunta_02():
     ]
 
     """
-    return
+
+    
 
 
 def pregunta_03():
+
+    with open( 'data.csv' , "r") as file:
+        data = file.readlines()
+        
+    data = [row.replace("\n", "") for row in data]
+    data = [row.replace("\t", ",") for row in data]
+    data = [row.split(",") for row in data]
+    data = [row[0:2] for row in data]
+    data = [(row[0], int(row[1])) for row in data] 
+    respuesta =[(k, sum([y for (x,y) in data if x == k])) for k in dict(data).keys()]
+    respuesta.sort(reverse = False)
+
+    print(respuesta)
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
     de tuplas (letra, suma) ordendas alfabeticamente.
@@ -67,6 +97,21 @@ def pregunta_03():
 
 
 def pregunta_04():
+
+    from collections import Counter    
+    with open( 'data.csv' , "r") as file:
+        data = file.readlines()
+        
+    data = [row.replace("\n", "") for row in data]
+    data = [row.replace("\t", ",") for row in data]
+    data = [row.split(",") for row in data]
+    data = [row[2] for row in data]
+    data = [row.split("-") for row in data]
+    data = [row[1] for row in data] 
+    d1 = Counter(data)
+    respuesta = list(d1.items())
+    respuesta.sort(reverse = False)
+    print respuesta
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
@@ -92,6 +137,16 @@ def pregunta_04():
 
 
 def pregunta_05():
+    with open( 'data.csv' , "r") as file:
+        data = file.readlines()  
+    data = [row.replace("\n", "") for row in data]
+    data = [row.replace("\t", ",") for row in data]
+    data = [row.split(",") for row in data]
+    data = [row[0:2] for row in data]
+    data = [(row[0], int(row[1])) for row in data] 
+    answer =[(k, max([y for (x,y) in data if x == k]), min([y for (x,y) in data if x == k])) for k in dict(data).keys()]
+    answer.sort(reverse = False)  
+    print(answer)
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
@@ -110,7 +165,19 @@ def pregunta_05():
 
 
 def pregunta_06():
-    """
+
+    import json
+    with open( 'data.csv' , "r") as file:
+        data = file.readlines()  
+    data = [row.replace("\n", "") for row in data]
+    data = [row.replace("\t", ",") for row in data]
+    data = [row.split(",") for row in data]
+    data = [row[7] for row in data]
+
+    print(data)
+    
+    
+        """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
     clave. Por cada clave, obtenga el valor asociado mas pequeño y el valor asociado mas
@@ -131,8 +198,7 @@ def pregunta_06():
     ]
 
     """
-    return
-
+ 
 
 def pregunta_07():
     """
@@ -203,7 +269,19 @@ def pregunta_09():
     }
 
     """
-    return
+    from collections import Counter    
+with open( 'data.csv' , "r") as file:
+        data = file.readlines()
+data = [row.replace("\n", "") for row in data]
+data = [row.replace("\t", ",") for row in data]
+data = [row.split(",") for row in data]
+data = [row[5] for row in data] 
+data = [row.replace(":", ",") for row in data]
+
+d2 = Counter(data)
+respuesta = list(d2.items())
+respuesta.sort(reverse = False)
+print (respuesta)
 
 
 def pregunta_10():
