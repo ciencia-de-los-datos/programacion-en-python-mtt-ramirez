@@ -113,12 +113,7 @@ def pregunta_04():
     ]
 
     """
-
-    import csv
-    with open('data.csv', 'r') as file:
-        data = file.readlines()
-        data = [line.replace("\n","") for line in data]
-        data = [line.split("\t") for line in data]
+    data = upload_data()
     counter = {}
     for lista in data:
         date = lista[2]
@@ -129,9 +124,8 @@ def pregunta_04():
             counter[month[1]] = 1
     final_count = [(contmonth,counter[contmonth] ) for contmonth in counter]
     final_count = final_count.sort(key = lambda x: x[0])
-    print(final_count)
-
-
+    return final_count
+    
 def pregunta_05():
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
@@ -335,7 +329,7 @@ def pregunta_09():
             if variable not in dict1:
                 dict1[variable] = 1
             else: 
-                diccionario[variable] += 1
+                dict1[variable] += 1
     dict1 = dict(sorted(dict1.items()))
     return dict1
 
